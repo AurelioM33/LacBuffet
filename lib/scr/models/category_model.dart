@@ -13,7 +13,7 @@ class CategoryModel {
   @JsonKey(defaultValue: [])
   List<ItemModel> itens;
 
-  @JsonKey(defaultValue: 0)
+  @JsonKey(defaultValue: [])
   int pagination;
 
   CategoryModel({
