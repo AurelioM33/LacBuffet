@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lac_buffet/scr/config/app_data.dart';
 
 import 'item_model.dart';
 
@@ -11,7 +9,7 @@ class CategoryModel {
   String title;
   String id;
   @JsonKey(defaultValue: [])
-  List<ItemModel> itens;
+  List<ItemModel> items;
 
   @JsonKey(defaultValue: [])
   int pagination;
@@ -19,7 +17,7 @@ class CategoryModel {
   CategoryModel({
     required this.title,
     required this.id,
-    required this.itens,
+    required this.items,
     required this.pagination,
   });
 

@@ -3,6 +3,7 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
+// ignore: unused_import
 import 'package:lac_buffet/scr/config/app_data.dart' as appData;
 import 'package:lac_buffet/scr/pages/common_widgets/app_name_widget.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/custom_shimmer.dart';
@@ -115,7 +116,7 @@ class _HomeTabState extends State<HomeTab> {
                   padding: EdgeInsets.only(left: 25),
                   height: 40,
                   child: SizedBox(
-                    child: !controller.isLoading
+                    child: !controller.isCategoryLoading
                         ? ListView.separated(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (_, index) {
@@ -157,7 +158,7 @@ class _HomeTabState extends State<HomeTab> {
             GetBuilder<HomeController>(
               builder: (controller) {
                 return Expanded(
-                  child: !controller.isLoading
+                  child: !controller.isCategoryLoading
                       ? GridView.builder(
                           padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                           physics: BouncingScrollPhysics(),
@@ -167,10 +168,10 @@ class _HomeTabState extends State<HomeTab> {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
                                   childAspectRatio: 9 / 11.5),
-                          itemCount: appData.items.length,
+                          itemCount: controller.allProducts.length,
                           itemBuilder: (context, index) {
                             return ItemTile(
-                                item: appData.items[index],
+                                item: controller.allProducts[index],
                                 cartAnimationMethod:
                                     itemSelectedCartAnimations);
                           },
