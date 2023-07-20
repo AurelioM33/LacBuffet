@@ -178,28 +178,43 @@ class _HomeTabState extends State<HomeTab> {
               builder: (controller) {
                 return Expanded(
                   child: !controller.isCategoryLoading
-                      ? GridView.builder(
-                          padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-                          physics: BouncingScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  childAspectRatio: 9 / 11.5),
-                          itemCount: controller.allProducts.length,
-                          itemBuilder: (_, index) {
-                            if (((index + 1) ==
-                                    controller.allProducts.length) &&
-                                !controller.isLastPage) {
-                              controller.loadMoreProducts();
-                            }
+                      ? Visibility(
+                          visible: (controller.currentCategory?.items ?? [])
+                              .isNotEmpty,
+                          child: GridView.builder(
+                            padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                            physics: BouncingScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
+                                    childAspectRatio: 9 / 11.5),
+                            itemCount: controller.allProducts.length,
+                            itemBuilder: (_, index) {
+                              if (((index + 1) ==
+                                      controller.allProducts.length) &&
+                                  !controller.isLastPage) {
+                                controller.loadMoreProducts();
+                              }
 
-                            return ItemTile(
-                                item: controller.allProducts[index],
-                                cartAnimationMethod:
-                                    itemSelectedCartAnimations);
-                          },
+                              return ItemTile(
+                                  item: controller.allProducts[index],
+                                  cartAnimationMethod:
+                                      itemSelectedCartAnimations);
+                            },
+                          ),
+                          replacement: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 40,
+                                color: CustomColors.customConstrastcolor,
+                              ),
+                              Text('Não há items para apresentar'),
+                            ],
+                          ),
                         )
                       : GridView.count(
                           padding: EdgeInsets.fromLTRB(16, 0, 16, 16),

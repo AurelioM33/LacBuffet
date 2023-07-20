@@ -1,5 +1,4 @@
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 import 'package:lac_buffet/scr/models/category_model.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
 import 'package:lac_buffet/scr/pages/home/repository/home_repository.dart';
@@ -41,9 +40,7 @@ class HomeController extends GetxController {
 
     debounce(
       searchTitle,
-      (_) {
-        print(searchTitle);
-      },
+      (_) => filterByTile(),
       time: const Duration(milliseconds: 600),
     );
 
@@ -83,6 +80,38 @@ class HomeController extends GetxController {
     );
   }
 
+  void filterByTile() {
+// Apagar todos os produtos das categorias
+    for (var category in allCategories) {
+      category.items.clear();
+      category.pagination = 0;
+    }
+
+    if (searchTitle.value.isEmpty) {
+      allCategories.removeAt(0);
+    } else {
+      CategoryModel? c = allCategories.firstWhereOrNull((cat) => cat.id == '');
+
+      if (c == null) {
+        //Criar uma categoria para todos os produtos
+        final allProductsCategory = CategoryModel(
+          title: 'Todos',
+          id: '',
+          items: [],
+          pagination: 0,
+        );
+        allCategories.insert(0, allProductsCategory);
+      } else {
+        c.items.clear();
+        c.pagination = 0;
+      }
+    }
+
+    currentCategory = allCategories.first;
+    update();
+    getAllProducts();
+  }
+
   void loadMoreProducts() {
     currentCategory!.pagination++;
     getAllProducts(canLoad: false);
@@ -98,6 +127,14 @@ class HomeController extends GetxController {
       'categoryId': currentCategory!.id,
       'itemsPerPage': itemsPerPage,
     };
+
+    if (searchTitle.value.isNotEmpty) {
+      body['title'] = searchTitle.value;
+
+      if (currentCategory!.id == '') {
+        body.remove('categoryId');
+      }
+    }
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
 
