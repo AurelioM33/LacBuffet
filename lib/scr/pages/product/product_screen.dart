@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
+import 'package:lac_buffet/scr/pages/base/controller/navigation_controller.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/quatity_widget.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 
@@ -20,6 +22,7 @@ class _ProductScreenState extends State<ProductScreen> {
   final UtilsServices utilsServices = UtilsServices();
 
   int cardItemQuantity = 1;
+  final navigationController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Expanded(
                 child: Hero(
                     tag: widget.item.imfUrl,
-                    child: Image.asset(widget.item.imfUrl)),
+                    child: Image.network(widget.item.imfUrl)),
               ),
               Expanded(
                 child: Container(
@@ -116,7 +119,15 @@ class _ProductScreenState extends State<ProductScreen> {
                               15,
                             )),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            //Fechar
+
+                            Get.back();
+                            // Carrinho
+
+                            navigationController
+                                .navigatePageView(NavigationTabs.cart);
+                          },
                           label: Text(
                             'Add no Carrinho',
                             style: TextStyle(

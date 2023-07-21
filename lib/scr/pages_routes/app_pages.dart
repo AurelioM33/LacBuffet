@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:lac_buffet/scr/pages/auth/view/sign_up_screen.dart';
 import 'package:lac_buffet/scr/pages/auth/view/sing_in_screen.dart';
 import 'package:lac_buffet/scr/pages/base/base_screen.dart';
+import 'package:lac_buffet/scr/pages/base/binding/navigation_binding.dart';
 import 'package:lac_buffet/scr/pages/home/binding/home_binding.dart';
 import 'package:lac_buffet/scr/pages/splash/splash_screen.dart';
 
@@ -22,7 +23,10 @@ abstract class AppPages {
     GetPage(
       page: () => BaseScreen(),
       name: PagesRoutes.baseRoute,
-      bindings: [HomeBindings()],
+      bindings: [
+        NavigationBinding(),
+        HomeBindings(),
+      ],
     ),
   ];
 }
