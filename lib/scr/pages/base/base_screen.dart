@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
 import 'package:lac_buffet/scr/pages/base/controller/navigation_controller.dart';
-import 'package:lac_buffet/scr/pages/cart/cart_tab.dart';
+import 'package:lac_buffet/scr/pages/cart/view/cart_tab.dart';
 import 'package:lac_buffet/scr/pages/home/view/home_tab.dart';
 import '../orders/orders_tab.dart';
 import '../profile/profile_tab.dart';

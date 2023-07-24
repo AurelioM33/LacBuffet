@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
 import 'package:lac_buffet/scr/models/card_item_model.dart';
-import 'package:lac_buffet/scr/pages/cart/components/cart_tile.dart';
+import 'package:lac_buffet/scr/pages/cart/view/components/cart_tile.dart';
+import 'package:lac_buffet/scr/pages/common_widgets/payment_dialog.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 import 'package:lac_buffet/scr/config/app_data.dart' as appData;
-
-import '../common_widgets/payment_dialog.dart';
 
 class CardTab extends StatefulWidget {
   CardTab(Type cardTab, {super.key});

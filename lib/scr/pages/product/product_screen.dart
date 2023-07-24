@@ -95,18 +95,17 @@ class _ProductScreenState extends State<ProductScreen> {
 
                       //Descrição
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                          ),
-                          child: SingleChildScrollView(
-                            child: Text(
-                              widget.item.description,
-                              style: TextStyle(height: 1.5),
-                            ),
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Text(
+                            widget.item.description,
+                            style: TextStyle(height: 1.5),
                           ),
                         ),
-                      ),
+                      )),
 
                       //Botão
 
