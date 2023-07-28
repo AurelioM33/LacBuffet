@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lac_buffet/scr/models/card_item_model.dart';
+import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/models/order_model.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/payment_dialog.dart';
 import 'package:lac_buffet/scr/pages/orders/components/order_status_widget.dart';

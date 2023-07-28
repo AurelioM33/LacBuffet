@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
-import 'package:lac_buffet/scr/models/card_item_model.dart';
+import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/quatity_widget.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 
 class CartTile extends StatefulWidget {
   final CartItemModel cartItem;
-  final Function(CartItemModel) remove;
 
   CartTile({
     super.key,
     required this.cartItem,
-    required this.remove,
   });
 
   @override
@@ -30,7 +28,7 @@ class _CartTileState extends State<CartTile> {
       ),
       child: ListTile(
         //Imagem
-        leading: Image.asset(
+        leading: Image.network(
           widget.cartItem.item.imfUrl,
           height: 60,
           width: 60,
@@ -59,16 +57,7 @@ class _CartTileState extends State<CartTile> {
         trailing: QuantityWidget(
           value: widget.cartItem.quantity,
           suffixText: widget.cartItem.item.unit,
-          result: (quantity) {
-            setState(() {
-              widget.cartItem.quantity = quantity;
-
-              if (quantity == 0) {
-                //Remover Item do carrinho
-                widget.remove(widget.cartItem);
-              }
-            });
-          },
+          result: (quantity) {},
           isRemovable: true,
         ),
       ),

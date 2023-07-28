@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
-import 'package:lac_buffet/scr/models/card_item_model.dart';
+import 'package:lac_buffet/scr/pages/cart/controller/cart_controller.dart';
 import 'package:lac_buffet/scr/pages/cart/view/components/cart_tile.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/payment_dialog.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
@@ -15,16 +16,6 @@ class CardTab extends StatefulWidget {
 
 class _CardTabState extends State<CardTab> {
   final UtilsServices utilsServices = UtilsServices();
-
-  void removeItemFromCart(CartItemModel cartItem) {
-    setState(() {
-      appData.cartItems.remove(cartItem);
-
-      utilsServices.showToast(
-        message: '${cartItem.item.itemname} removido(a ) do carrinho',
-      );
-    });
-  }
 
   double cartTotalPrice() {
     double total = 0;
@@ -46,14 +37,17 @@ class _CardTabState extends State<CardTab> {
           //Lista de Itens do Carrinho
 
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (_, index) {
-                return CartTile(
-                  cartItem: appData.cartItems[index],
-                  remove: removeItemFromCart,
+            child: GetBuilder<CartController>(
+              builder: (controller) {
+                return ListView.builder(
+                  itemCount: controller.cartItems.length,
+                  itemBuilder: (_, index) {
+                    return CartTile(
+                      cartItem: controller.cartItems[index],
+                    );
+                  },
                 );
               },
-              itemCount: appData.cartItems.length,
             ),
           ),
 
@@ -77,20 +71,32 @@ class _CardTabState extends State<CardTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  'Total Geral',
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  utilsServices.priceToCurrency(
-                    cartTotalPrice(),
-                  ),
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: CustomColors.customSwatchColor,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Geral',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                      GetBuilder<CartController>(
+                        builder: (controller) {
+                          return Text(
+                            utilsServices.priceToCurrency(
+                              controller.cartTotalPrice(),
+                            ),
+                            style: TextStyle(
+                              fontSize: 23,
+                              color: CustomColors.customSwatchColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(

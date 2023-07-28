@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import
 
-import 'package:lac_buffet/scr/models/card_item_model.dart';
+import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
 
 class OrderModel {

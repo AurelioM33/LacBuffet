@@ -1,10 +1,12 @@
 import 'package:lac_buffet/scr/constants/endpoints.dart';
+import 'package:lac_buffet/scr/models/cart_item_model.dart';
+import 'package:lac_buffet/scr/pages/cart/cart%20result/cart_result.dart';
 import 'package:lac_buffet/scr/services/http_manager.dart';
 
 class CartRepository {
   final _httpManager = HttpManager();
 
-  Future getCartItems({
+  Future<CartResult<List<CartItemModel>>> getCartItems({
     required String token,
     required String userId,
   }) async {
@@ -20,9 +22,15 @@ class CartRepository {
     );
 
     if (result['result'] != null) {
-      print(result['result']);
+      List<CartItemModel> data =
+          List<Map<String, dynamic>>.from(result['result'])
+              .map(CartItemModel.fromJson)
+              .toList();
+
+      return CartResult<List<CartItemModel>>.success(data);
     } else {
-      print('Ocorreu um erro ao recuperar os itens do Carrinho');
+      return CartResult.erro(
+          'Ocorreu um erro ao recuperar os items do carrinho');
     }
   }
 }

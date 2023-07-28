@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lac_buffet/scr/models/order_model.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class PaymentDialog extends StatelessWidget {
   final OrderModel order;
@@ -42,12 +41,6 @@ class PaymentDialog extends StatelessWidget {
                 ),
 
                 //QR code
-
-                QrImage(
-                  data: "1234567890",
-                  version: QrVersions.auto,
-                  size: 200.0,
-                ),
 
                 //Vencimento
 

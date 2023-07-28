@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:lac_buffet/scr/models/card_item_model.dart';
+import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
 import 'package:lac_buffet/scr/models/user_model.dart';
 
@@ -70,14 +70,17 @@ List<CartItemModel> cartItems = [
   CartItemModel(
     item: Cake,
     quantity: 1,
+    id: '',
   ),
   CartItemModel(
     item: Cake3,
     quantity: 1,
+    id: '',
   ),
   CartItemModel(
     item: Cake2,
     quantity: 2,
+    id: '',
   ),
 ];
 
@@ -107,10 +110,12 @@ List<OrderModel> orders = [
       CartItemModel(
         item: Cake,
         quantity: 2,
+        id: '',
       ),
       CartItemModel(
         item: Cake2,
         quantity: 2,
+        id: '',
       ),
     ],
   ),
@@ -132,6 +137,7 @@ List<OrderModel> orders = [
       CartItemModel(
         item: Cake3,
         quantity: 4,
+        id: '',
       ),
     ],
   ),
