@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
 import 'package:lac_buffet/scr/pages/base/controller/navigation_controller.dart';
+import 'package:lac_buffet/scr/pages/cart/controller/cart_controller.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/quatity_widget.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 
@@ -21,7 +22,9 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   final UtilsServices utilsServices = UtilsServices();
 
-  int cardItemQuantity = 1;
+  int cartItemQuantity = 1;
+
+  final cartController = Get.find<CartController>();
   final navigationController = Get.find<NavigationController>();
 
   @override
@@ -73,10 +76,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                           QuantityWidget(
                             suffixText: widget.item.unit,
-                            value: cardItemQuantity,
+                            value: cartItemQuantity,
                             result: (quantity) {
                               setState(() {
-                                cardItemQuantity = quantity;
+                                cartItemQuantity = quantity;
                               });
                             },
                           ),
@@ -122,6 +125,12 @@ class _ProductScreenState extends State<ProductScreen> {
                             //Fechar
 
                             Get.back();
+
+                            cartController.addItemToCart(
+                              item: widget.item,
+                              quantity: cartItemQuantity,
+                            );
+
                             // Carrinho
 
                             navigationController
