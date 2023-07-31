@@ -34,7 +34,7 @@ class CartRepository {
     }
   }
 
-  Future addItemToCart({
+  Future<CartResult<String>> addItemToCart({
     required String userId,
     required String token,
     required String productId,
@@ -49,11 +49,13 @@ class CartRepository {
           'productId': productId,
         },
         headers: {
-          'token': token,
+          'X-Parse-Session-Token': token,
         });
 
     if (result['result'] != null) {
-      //Adicionamos
+      return CartResult.success(result['result']['id']);
+    } else {
+      return CartResult.erro('Não foi possivel adicionar item ao carrinho.');
     }
   }
 }
