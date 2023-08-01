@@ -1,3 +1,4 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lac_buffet/scr/constants/endpoints.dart';
 import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/pages/cart/cart%20result/cart_result.dart';
@@ -32,6 +33,24 @@ class CartRepository {
       return CartResult.erro(
           'Ocorreu um erro ao recuperar os items do carrinho');
     }
+  }
+
+  Future<bool> changItemQuantity({
+    required String token,
+    required String cartItemId,
+    required int quantity,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: Endpoints.changeItemQuantity,
+      method: HttpMethods.post,
+      body: {
+        'cartItemId': cartItemId,
+        'quantity': quantity,
+      },
+      headers: {'X-Parse-Session-Token': token},
+    );
+
+    return result.isEmpty;
   }
 
   Future<CartResult<String>> addItemToCart({
