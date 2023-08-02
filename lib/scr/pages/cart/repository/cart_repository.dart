@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lac_buffet/scr/constants/endpoints.dart';
 import 'package:lac_buffet/scr/models/cart_item_model.dart';
 import 'package:lac_buffet/scr/pages/cart/cart%20result/cart_result.dart';

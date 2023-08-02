@@ -10,10 +10,9 @@ import 'package:lac_buffet/scr/services/utils_services.dart';
 class ProductScreen extends StatefulWidget {
   ProductScreen({
     super.key,
-    required this.item,
   });
 
-  final ItemModel item;
+  final ItemModel item = Get.arguments;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
