@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
-import 'package:lac_buffet/scr/pages/product/product_screen.dart';
 import 'package:lac_buffet/scr/pages_routes/app_pages.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';

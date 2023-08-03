@@ -3,6 +3,7 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
+// ignore: unused_import
 import 'package:lac_buffet/scr/config/app_data.dart' as appData;
 import 'package:lac_buffet/scr/pages/common_widgets/app_name_widget.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/custom_shimmer.dart';
