@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
 // ignore: unused_import
 import 'package:lac_buffet/scr/config/app_data.dart' as appData;
+import 'package:lac_buffet/scr/pages/base/controller/navigation_controller.dart';
+import 'package:lac_buffet/scr/pages/cart/controller/cart_controller.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/app_name_widget.dart';
 import 'package:lac_buffet/scr/pages/common_widgets/custom_shimmer.dart';
 import 'package:lac_buffet/scr/pages/home/controller/home_controller.dart';
@@ -22,6 +24,7 @@ class _HomeTabState extends State<HomeTab> {
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
 
   final searchController = TextEditingController();
+  final navigationController = Get.find<NavigationController>();
 
   late Function(GlobalKey) runAddToCardAnimation;
 
@@ -44,22 +47,28 @@ class _HomeTabState extends State<HomeTab> {
               top: 15,
               right: 15,
             ),
-            child: GestureDetector(
-              onTap: () {},
-              child: Badge(
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-                textColor: CustomColors.customConstrastcolor,
-                child: AddToCartIcon(
-                  key: globalKeyCartItems,
-                  icon: Icon(
-                    Icons.add_shopping_cart,
-                    color: CustomColors.customSwatchColor,
+            child: GetBuilder<CartController>(
+              builder: (controller) {
+                return GestureDetector(
+                  onTap: () {
+                    navigationController.navigatePageView(NavigationTabs.cart);
+                  },
+                  child: Badge(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                    textColor: CustomColors.customConstrastcolor,
+                    child: AddToCartIcon(
+                      key: globalKeyCartItems,
+                      icon: Icon(
+                        Icons.add_shopping_cart,
+                        color: CustomColors.customSwatchColor,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],

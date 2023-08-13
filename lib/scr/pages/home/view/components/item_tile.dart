@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lac_buffet/scr/models/item_model.dart';
+import 'package:lac_buffet/scr/pages/cart/controller/cart_controller.dart';
 import 'package:lac_buffet/scr/pages_routes/app_pages.dart';
 import 'package:lac_buffet/scr/services/utils_services.dart';
 import 'package:lac_buffet/scr/config/custom_colors.dart';
@@ -23,6 +24,7 @@ class _ItemTileState extends State<ItemTile> {
   final GlobalKey imageGk = GlobalKey();
 
   final UtilsServices utilsServices = UtilsServices();
+  final cartController = Get.find<CartController>();
 
   IconData tileIcon = Icons.add_shopping_cart_outlined;
 
@@ -118,6 +120,8 @@ class _ItemTileState extends State<ItemTile> {
               child: InkWell(
                 onTap: () {
                   switchIcon();
+
+                  cartController.addItemToCart(item: widget.item);
 
                   widget.cartAnimationMethod(imageGk);
                 },
